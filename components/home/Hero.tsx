@@ -24,37 +24,37 @@ export default function Hero() {
       className="hero-gradient overflow-hidden pb-24 pt-24"
     >
       <Container>
-        <div className="grid items-center gap-12 lg:grid-cols-[1fr_1.2fr]">
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.2fr]">
 
           {/* LEFT */}
           <motion.div
             variants={fadeLeft}
             initial="hidden"
             animate="show"
-            className="space-y-8"
+            className="space-y-6 text-center lg:space-y-8 lg:text-left"
           >
-            <span className="inline-flex rounded-full bg-primary/10 px-5 py-2 text-sm font-semibold text-primary">
+            <span className="mx-auto inline-flex rounded-full bg-primary/10 px-5 py-2 text-sm font-semibold text-primary lg:mx-0">
               Personalized One-to-One Learning
             </span>
 
-            <h1 className="max-w-xl text-4xl font-bold leading-tight tracking-tight md:text-5xl">
+            <h1 className="mx-auto max-w-xl text-3xl font-bold leading-tight tracking-tight sm:text-4xl lg:mx-0 lg:text-5xl">
               Learn Math & Physics with Personalized One-on-One Mentorship
             </h1>
 
-            <div className="max-w-xl space-y-3">
+            <div className="mx-auto max-w-xl space-y-3 lg:mx-0">
               {highlights.map((point) => (
                 <p
                   key={point}
-                  className="text-lg font-medium text-muted-foreground md:text-xl"
+                  className="text-base font-medium text-muted-foreground sm:text-lg lg:text-xl"
                 >
                   {point}
                 </p>
               ))}
             </div>
 
-            <div className="flex flex-wrap gap-4">
+            <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
 
-              <TrialButton />
+              <TrialButton className="w-full sm:w-auto" />
 
               <a
                 href={`https://wa.me/${siteConfig.whatsapp.replace(
@@ -63,7 +63,7 @@ export default function Hero() {
                 )}?text=Hi%20Tattva,%20I%20would%20like%20to%20know%20more%20about%20your%20classes.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-[#25D366] via-[#22c55e] to-[#128C7E] px-10 py-6 text-base font-bold text-white shadow-[0_12px_35px_rgba(37,211,102,0.45)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_18px_45px_rgba(37,211,102,0.6)]"
+                className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-[#25D366] via-[#22c55e] to-[#128C7E] px-10 py-6 text-base font-bold text-white shadow-[0_12px_35px_rgba(37,211,102,0.45)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_18px_45px_rgba(37,211,102,0.6)] sm:w-auto"
               >
                 <span className="absolute inset-0 -translate-x-[140%] skew-x-[-25deg] bg-white/30 transition-transform duration-1000 group-hover:translate-x-[220%]" />
 
@@ -84,11 +84,13 @@ export default function Hero() {
             variants={fadeRight}
             initial="hidden"
             animate="show"
-            className="relative flex justify-center overflow-visible"
+            className="relative flex justify-center overflow-visible px-2 lg:px-0"
           >
-            <div className="absolute -z-10 h-[420px] w-[420px] rounded-full bg-primary/15 blur-3xl" />
+            <div className="absolute -z-10 h-[260px] w-[260px] rounded-full bg-primary/15 blur-3xl lg:h-[420px] lg:w-[420px]" />
 
-            <FloatingSuccessCard />
+            <div className="hidden lg:block">
+              <FloatingSuccessCard />
+            </div>
 
             {/* Students */}
 
@@ -100,7 +102,7 @@ export default function Hero() {
                 duration: 5,
                 repeat: Infinity,
               }}
-              className="absolute -right-8 top-12 z-20 rounded-2xl bg-white px-5 py-4 shadow-xl"
+              className="absolute -right-6 top-10 z-20 hidden rounded-2xl bg-white px-5 py-4 shadow-xl lg:block"
             >
               <p className="text-3xl font-bold text-primary">
                 150+
@@ -121,7 +123,7 @@ export default function Hero() {
                 duration: 4.5,
                 repeat: Infinity,
               }}
-              className="absolute -left-10 bottom-10 z-20 rounded-2xl bg-white px-5 py-4 shadow-xl"
+              className="absolute -left-8 bottom-8 z-20 hidden rounded-2xl bg-white px-5 py-4 shadow-xl lg:block"
             >
               <p className="text-3xl font-bold text-primary">
                 5000+
@@ -152,7 +154,7 @@ export default function Hero() {
                   duration: 5,
                   repeat: Infinity,
                 }}
-                className={`absolute ${pos} z-20 rounded-xl border bg-white px-4 py-3 shadow-lg`}
+                className={`absolute ${pos} z-20 hidden rounded-xl border bg-white px-4 py-3 shadow-lg xl:block`}
               >
                 <p className="font-bold text-primary">
                   {title}
@@ -166,13 +168,14 @@ export default function Hero() {
 
             {/* Video */}
 
-            <div className="relative z-10 flex aspect-[2.2/1] w-full max-w-[750px] items-center justify-center rounded-[2rem] bg-background shadow-2xl">
+            <div className="relative z-10 flex aspect-video w-full max-w-full items-center justify-center rounded-2xl bg-background shadow-2xl lg:aspect-[2.2/1] lg:max-w-[750px] lg:rounded-[2rem]">
               <video
                 autoPlay
                 muted
                 loop
                 playsInline
-                className="w-full rounded-[1.5rem]"
+                preload="metadata"
+                className="h-full w-full rounded-xl object-cover lg:rounded-[1.5rem]"
               >
                 <source
                   src="/videos/tanvi.mp4"
