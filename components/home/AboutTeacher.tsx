@@ -89,7 +89,7 @@ export default function AboutTeacher() {
             description="Personalized one-on-one tutoring designed to help every student build confidence, master concepts, and achieve academic excellence."
           />
 
-          <div className="grid items-start gap-20 lg:grid-cols-2">
+          <div className="isolate grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
 
             {/* LEFT */}
 
@@ -98,7 +98,7 @@ export default function AboutTeacher() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true }}
-              className="sticky top-28"
+              className="relative z-10 lg:sticky lg:top-28"
             >
 
               <div className="absolute -z-10 h-[420px] w-[420px] rounded-full bg-primary/10 blur-3xl" />
@@ -124,7 +124,7 @@ export default function AboutTeacher() {
                 <Button
                   asChild
                   size="lg"
-                  className="group relative mt-10 overflow-hidden rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-10 py-6 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl active:scale-95"
+                  className="group relative mt-10 w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-6 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl active:scale-95 sm:w-auto sm:px-8 sm:py-5 sm:text-base lg:px-10 lg:py-6 lg:text-lg"
                 >
                   <a
                     href={`https://wa.me/${siteConfig.whatsapp.replace(

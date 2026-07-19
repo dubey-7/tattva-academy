@@ -27,7 +27,7 @@ export default function FloatingSuccessCard() {
         repeat: Infinity,
         ease: "easeInOut",
       }}
-      className="absolute -left-20 top-8 z-40 w-[300px] rounded-2xl border bg-white p-4 shadow-2xl"
+      className="absolute -left-20 top-8 z-40 w-[300px] rounded-2xl border bg-card p-4 shadow-2xl"
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -51,7 +51,7 @@ export default function FloatingSuccessCard() {
                 Success Story
               </p>
 
-              <h4 className="mt-1 text-base font-bold text-[#0D1B4C]">
+              <h4 className="mt-1 text-base font-bold text-foreground">
                 {student.name}
               </h4>
 

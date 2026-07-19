@@ -63,7 +63,7 @@ export default function Hero() {
                 )}?text=Hi%20Tattva,%20I%20would%20like%20to%20know%20more%20about%20your%20classes.`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-[#25D366] via-[#22c55e] to-[#128C7E] px-10 py-6 text-base font-bold text-white shadow-[0_12px_35px_rgba(37,211,102,0.45)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_18px_45px_rgba(37,211,102,0.6)] sm:w-auto"
+                className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-2xl bg-gradient-to-r from-[#25D366] via-[#22c55e] to-[#128C7E] px-6 py-4 text-sm font-bold text-white shadow-[0_12px_35px_rgba(37,211,102,0.45)] transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-[0_18px_45px_rgba(37,211,102,0.6)] sm:w-auto sm:px-8 sm:py-5 sm:text-base lg:px-10 lg:py-6 lg:text-lg"
               >
                 <span className="absolute inset-0 -translate-x-[140%] skew-x-[-25deg] bg-white/30 transition-transform duration-1000 group-hover:translate-x-[220%]" />
 
@@ -102,7 +102,7 @@ export default function Hero() {
                 duration: 5,
                 repeat: Infinity,
               }}
-              className="absolute -right-6 top-10 z-20 hidden rounded-2xl bg-white px-5 py-4 shadow-xl lg:block"
+              className="absolute -right-6 top-10 z-20 hidden rounded-2xl border bg-card px-5 py-4 shadow-xl lg:block"
             >
               <p className="text-3xl font-bold text-primary">
                 150+
@@ -123,7 +123,7 @@ export default function Hero() {
                 duration: 4.5,
                 repeat: Infinity,
               }}
-              className="absolute -left-8 bottom-8 z-20 hidden rounded-2xl bg-white px-5 py-4 shadow-xl lg:block"
+              className="absolute -left-8 bottom-8 z-20 hidden rounded-2xl border bg-card px-5 py-4 shadow-xl lg:block"
             >
               <p className="text-3xl font-bold text-primary">
                 5000+
@@ -154,7 +154,7 @@ export default function Hero() {
                   duration: 5,
                   repeat: Infinity,
                 }}
-                className={`absolute ${pos} z-20 hidden rounded-xl border bg-white px-4 py-3 shadow-lg xl:block`}
+                className={`absolute ${pos} z-20 hidden rounded-xl border bg-card px-4 py-3 shadow-lg xl:block`}
               >
                 <p className="font-bold text-primary">
                   {title}
@@ -168,7 +168,7 @@ export default function Hero() {
 
             {/* Video */}
 
-            <div className="relative z-10 flex aspect-video w-full max-w-full items-center justify-center rounded-2xl bg-background shadow-2xl lg:aspect-[2.2/1] lg:max-w-[750px] lg:rounded-[2rem]">
+            <div className="relative z-10 mx-auto mt-8 flex aspect-video w-full max-w-[520px] items-center justify-center rounded-2xl bg-background shadow-2xl sm:max-w-[600px] md:mt-10 md:max-w-[660px] lg:mt-0 lg:aspect-[2.2/1] lg:max-w-[750px] lg:rounded-[2rem]">
               <video
                 autoPlay
                 muted

@@ -24,19 +24,19 @@ export default function SuccessStories() {
         <div className="relative mt-12 overflow-hidden">
 
         {/* left fade */}
-        <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-28 bg-gradient-to-r from-[#F8FAFC] to-transparent" />
+        <div className="pointer-events-none absolute left-0 top-0 z-20 h-full w-28 bg-gradient-to-r from-muted to-transparent" />
 
         {/* right fade */}
-        <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-28 bg-gradient-to-l from-[#F8FAFC] to-transparent" />
+        <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-28 bg-gradient-to-l from-muted to-transparent" />
 
         <div className="marquee flex gap-6">
 
           {stories.map((story, index) => (
             <div
               key={`${story.id}-${index}`}
-              className="group w-[320px] shrink-0 overflow-hidden rounded-3xl border bg-white shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
+              className="group w-[320px] shrink-0 overflow-hidden rounded-3xl border bg-card shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl"
             >
-              <div className="relative h-[330px] bg-gray-100">
+              <div className="relative h-[330px] bg-muted">
                 <Image
                   src={story.image}
                   alt={story.name}
@@ -47,7 +47,7 @@ export default function SuccessStories() {
 
               <div className="p-5">
 
-                <h3 className="text-xl font-bold text-[#0D1B4C]">
+                <h3 className="text-xl font-bold text-foreground">
                   {story.name}
                 </h3>
 

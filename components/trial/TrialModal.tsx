@@ -139,7 +139,7 @@ export default function TrialModal({
           </DialogTitle>
 
           <DialogDescription>
-            Fill in the details below and we'll contact you shortly.
+            Fill in the details below and we&apos;ll contact you shortly.
           </DialogDescription>
 
         </DialogHeader>
@@ -177,7 +177,7 @@ export default function TrialModal({
 
             <div>
               <label className="mb-2 block font-medium">
-                Parent's Name
+                Parent&apos;s Name
                 <span className="text-red-500"> *</span>
               </label>
 
@@ -229,7 +229,7 @@ export default function TrialModal({
 
             <div>
               <label className="mb-2 block font-medium">
-                Parent's WhatsApp Number
+                Parent&apos;s WhatsApp Number
                 <span className="text-red-500"> *</span>
               </label>
 
@@ -387,11 +387,11 @@ export default function TrialModal({
               <button
                   type="submit"
                   disabled={!isValid || loading}
-                  className={`group relative w-full overflow-hidden rounded-2xl py-4 font-bold text-white transition-all duration-300
+                  className={`group relative w-full overflow-hidden rounded-2xl py-4 font-bold transition-all duration-300
                   ${
                       isValid
-                      ? "bg-gradient-to-r from-[#25D366] to-[#128C7E] hover:scale-[1.02] hover:shadow-2xl"
-                      : "cursor-not-allowed bg-gray-300"
+                      ? "bg-gradient-to-r from-[#25D366] to-[#128C7E] text-white hover:scale-[1.02] hover:shadow-2xl"
+                      : "cursor-not-allowed bg-muted text-muted-foreground"
                   }`}
               >
                   {isValid && (

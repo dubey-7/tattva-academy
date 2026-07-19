@@ -57,7 +57,7 @@ const stats = [
 
 export default function Stats() {
   return (
-    <section className="bg-[#F8FAFC] py-16">
+    <section className="bg-muted/30 py-16">
       <Container>
 
         {/* ================= COUNTRIES ================= */}
@@ -75,16 +75,16 @@ export default function Stats() {
             duration: 0.6,
           }}
           viewport={{ once: true }}
-          className="overflow-hidden rounded-[34px] border bg-white shadow-lg"
+          className="overflow-hidden rounded-[34px] border bg-card shadow-lg"
         >
 
-          <div className="grid items-center gap-10 px-12 py-12 lg:grid-cols-[240px_1fr_330px]">
+          <div className="grid items-center gap-10 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[240px_1fr_330px] lg:px-12 lg:py-12">
 
             {/* LEFT */}
 
             <div>
 
-              <p className="text-3xl font-bold leading-snug text-[#0D1B4C]">
+              <p className="text-3xl font-bold leading-snug text-foreground">
 
                 Trusted by
                 <br />
@@ -92,13 +92,13 @@ export default function Stats() {
 
               </p>
 
-              <h3 className="mt-4 text-5xl font-extrabold text-[#6D28D9]">
+              <h3 className="mt-4 text-5xl font-extrabold text-primary">
 
                 15+
 
               </h3>
 
-              <p className="text-xl font-semibold text-[#0D1B4C]">
+              <p className="text-xl font-semibold text-foreground">
 
                 Countries
 
@@ -132,7 +132,7 @@ export default function Stats() {
 
                   <div
                     key={country.name}
-                    className="flex h-14 w-14 items-center justify-center rounded-xl border bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                    className="flex h-14 w-14 items-center justify-center rounded-xl border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md"
                   >
 
                     <Image
@@ -147,7 +147,7 @@ export default function Stats() {
 
                 ))}
 
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl border bg-white text-lg font-bold text-[#6D28D9] shadow-sm">
+                <div className="flex h-14 w-14 items-center justify-center rounded-xl border bg-card text-lg font-bold text-primary shadow-sm">
 
                   +5
 
@@ -155,7 +155,7 @@ export default function Stats() {
 
               </div>
 
-              <p className="mt-6 text-center text-base font-medium text-gray-600">
+              <p className="mt-6 text-center text-base font-medium text-muted-foreground">
 
                 ...and many more
 
@@ -182,7 +182,7 @@ export default function Stats() {
             delay: 0.15,
           }}
           viewport={{ once: true }}
-          className="mt-10 overflow-hidden rounded-[30px] border bg-white shadow-lg"
+          className="mt-10 overflow-hidden rounded-[30px] border bg-card shadow-lg"
         >
           <div className="grid divide-y md:grid-cols-5 md:divide-x md:divide-y-0">
 
@@ -194,25 +194,25 @@ export default function Stats() {
 
                 <div
                   key={item.label}
-                  className="flex flex-col items-center justify-center px-8 py-10 transition-all hover:bg-[#F8FAFC]"
+                  className="flex flex-col items-center justify-center px-6 py-8 transition-all hover:bg-muted sm:px-8 sm:py-10"
                 >
 
                   <div className="mb-5">
 
                     <Icon
                       strokeWidth={1.8}
-                      className="h-12 w-12 text-[#6D28D9]"
+                      className="h-12 w-12 text-primary"
                     />
 
                   </div>
 
-                  <h3 className="text-5xl font-extrabold text-[#0D1B4C]">
+                  <h3 className="text-4xl font-extrabold text-foreground sm:text-5xl">
 
                     {item.value}
 
                   </h3>
 
-                  <p className="mt-3 text-center text-base font-medium text-gray-500">
+                  <p className="mt-3 text-center text-base font-medium text-muted-foreground">
 
                     {item.label}
 
