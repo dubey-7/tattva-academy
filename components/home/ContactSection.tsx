@@ -24,12 +24,12 @@ export default function ContactSection() {
           </span>
 
           <h2 className="mt-6 text-4xl font-bold md:text-5xl">
-            Let's Connect
+            Let&apos;s Connect
           </h2>
 
           <p className="mt-5 text-lg leading-8 text-muted-foreground">
             Have questions about our courses or want to book a free trial?
-            We'd love to help you choose the right learning path.
+            We&apos;d love to help you choose the right learning path.
           </p>
 
         </div>
@@ -101,21 +101,21 @@ export default function ContactSection() {
 
         {/* CTA */}
 
-        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-primary to-primary/80 px-10 py-16 text-center text-primary-foreground shadow-2xl">
+        <div className="mx-auto mt-16 max-w-4xl overflow-hidden rounded-[2rem] bg-gradient-to-r from-primary to-primary/80 px-6 py-12 text-center text-primary-foreground shadow-2xl sm:px-10 sm:py-16">
 
-          <h2 className="text-4xl font-bold">
+          <h2 className="text-2xl font-bold sm:text-3xl lg:text-4xl">
             Still Have Questions?
           </h2>
 
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 opacity-90">
+          <p className="mx-auto mt-6 max-w-2xl text-base leading-7 opacity-90 sm:text-lg sm:leading-8">
             Speak directly with our mentor, discuss your learning goals,
-            and schedule your FREE Trial Class at a time that's convenient for you.
+            and schedule your FREE Trial Class at a time that&apos;s convenient for you.
           </p>
 
           <Button
             asChild
             size="lg"
-            className="group relative mt-10 overflow-hidden rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-10 py-6 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl active:scale-95"
+            className="group relative mt-10 w-full overflow-hidden rounded-xl bg-gradient-to-r from-[#25D366] to-[#128C7E] px-6 py-4 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-1 hover:scale-105 hover:shadow-2xl active:scale-95 sm:w-auto sm:px-8 sm:py-5 sm:text-base lg:px-10 lg:py-6 lg:text-lg"
           >
             <a
               href={`https://wa.me/${siteConfig.whatsapp.replace(

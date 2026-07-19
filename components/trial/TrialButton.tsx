@@ -23,8 +23,8 @@ export default function TrialButton({
         className={cn(
           "group relative inline-flex items-center justify-center overflow-hidden rounded-2xl",
           "bg-primary text-primary-foreground",
-          "px-8 py-5",
-          "text-lg font-bold",
+          "px-6 py-4 sm:px-8 sm:py-5 lg:px-10 lg:py-6",
+          "text-sm font-bold sm:text-base lg:text-lg",
           "shadow-[0_15px_40px_rgba(99,102,241,0.45)]",
           "transition-all duration-300",
           "hover:-translate-y-2 hover:scale-105",

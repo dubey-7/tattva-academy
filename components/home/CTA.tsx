@@ -13,13 +13,13 @@ export default function CTA() {
   return (
     <section className="py-24">
       <Container>
-        <div className="overflow-hidden rounded-[2rem] bg-primary px-8 py-16 text-center text-primary-foreground shadow-2xl md:px-16">
+        <div className="overflow-hidden rounded-[2rem] bg-primary px-6 py-12 text-center text-primary-foreground shadow-2xl sm:px-8 sm:py-16 md:px-16">
 
           <span className="inline-block rounded-full bg-white/10 px-4 py-2 text-sm font-medium">
             Start Your Learning Journey Today
           </span>
 
-          <h2 className="mt-6 text-4xl font-bold md:text-5xl">
+          <h2 className="mt-6 text-3xl font-bold sm:text-4xl md:text-5xl">
             Book Your Free Trial Class
           </h2>
 
@@ -46,7 +46,7 @@ export default function CTA() {
             <Button
               asChild
               size="lg"
-              className="group relative overflow-hidden rounded-2xl border-2 border-white bg-transparent px-10 py-5 text-[18px] font-bold text-white transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:bg-white hover:text-primary hover:shadow-xl"
+              className="group relative w-full overflow-hidden rounded-2xl border-2 border-white bg-transparent px-6 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-2 hover:scale-105 hover:bg-white hover:text-primary hover:shadow-xl sm:w-auto sm:px-8 sm:py-5 sm:text-base lg:px-10 lg:text-lg"
             >
               <a
                 href={`https://wa.me/${siteConfig.whatsapp.replace(

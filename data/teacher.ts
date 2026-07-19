@@ -1,12 +1,12 @@
 export const teacher = {
   name: "Tanvi Dubey",
   role: "Teacher & Mentor",
-  image: "/images/teacher/tanvi.png",
+  image: "/images/teacher/tanviii.jpg",
 
   content: {
     title: "Meet Your Teacher",
 
-    name: "Tanvi Dube",
+    name: "Tanvi Dubey",
 
     subtitle: "Teacher & Mentor",
 

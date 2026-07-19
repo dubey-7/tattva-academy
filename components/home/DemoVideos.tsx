@@ -43,21 +43,22 @@ export default function DemoVideos() {
 
         </div>
 
-        <div className="mt-14 flex justify-center">
+        <div className="mt-14 flex justify-center px-4 sm:px-0">
 
           <Button
             asChild
             size="lg"
-            className="animate-premium shine-button rounded-2xl px-16 py-9 text-xl font-extrabold tracking-wide shadow-2xl transition-all duration-300 hover:scale-110"
+            className="animate-premium shine-button w-full max-w-md rounded-2xl px-6 py-5 text-base font-extrabold tracking-wide shadow-2xl transition-all duration-300 hover:scale-105 sm:w-auto sm:max-w-none sm:px-10 sm:py-7 sm:text-lg lg:px-16 lg:py-9 lg:text-xl lg:hover:scale-110"
           >
             <a
               href={whatsappLink}
               target="_blank"
               rel="noopener noreferrer"
+              className="flex items-center justify-center"
             >
               🎯 Reserve Your FREE Demo Class
 
-              <ArrowRight className="ml-3 h-6 w-6" />
+              <ArrowRight className="ml-3 h-6 w-6 shrink-0" />
             </a>
           </Button>
 
