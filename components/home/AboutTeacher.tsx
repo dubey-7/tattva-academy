@@ -86,6 +86,7 @@ export default function AboutTeacher() {
           <SectionHeading
             badge="About the Teacher"
             title={content.title}
+            titleClassName="font-handwritten font-semibold tracking-normal text-primary [text-shadow:0_2px_10px_rgba(var(--glow),0.35)] text-4xl sm:text-5xl md:text-6xl lg:text-7xl"
             description="Personalized one-on-one tutoring designed to help every student build confidence, master concepts, and achieve academic excellence."
           />
 

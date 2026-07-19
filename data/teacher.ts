@@ -4,7 +4,7 @@ export const teacher = {
   image: "/images/teacher/tanviii.jpg",
 
   content: {
-    title: "Meet Your Teacher",
+    title: "Hi! I'm Your Educator",
 
     name: "Tanvi Dubey",
 

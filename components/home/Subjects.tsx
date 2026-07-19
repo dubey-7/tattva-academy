@@ -80,7 +80,7 @@ export default function Subjects() {
 
         <div className="pointer-events-none absolute right-0 top-0 z-20 h-full w-14 bg-gradient-to-l from-muted to-transparent" />
           
-          <div className="marquee flex gap-6">
+          <div className="marquee flex gap-3 sm:gap-6">
 
             {[...programs, ...programs].map((program, index) => {
 
@@ -102,30 +102,30 @@ export default function Subjects() {
                     y: -12,
                     scale: 1.04,
                   }}
-                  className="group w-[320px] shrink-0 rounded-[28px] border bg-card p-8 shadow-lg transition-all duration-300 hover:shadow-2xl"
+                  className="group w-[210px] shrink-0 rounded-2xl border bg-card p-4 shadow-lg transition-all duration-300 hover:shadow-2xl sm:w-[280px] sm:rounded-[28px] sm:p-6 md:w-[320px] md:p-8"
                 >
 
                   <div
-                    className={`mb-6 flex h-16 w-16 items-center justify-center rounded-2xl ${program.color}`}
+                    className={`mb-3 flex h-11 w-11 items-center justify-center rounded-xl sm:mb-5 sm:h-14 sm:w-14 sm:rounded-2xl md:mb-6 md:h-16 md:w-16 ${program.color}`}
                   >
-                    <Icon className="h-8 w-8" />
+                    <Icon className="h-5 w-5 sm:h-7 sm:w-7 md:h-8 md:w-8" />
                   </div>
 
-                  <h3 className="text-2xl font-bold text-foreground">
+                  <h3 className="text-base font-bold text-foreground sm:text-xl md:text-2xl">
                     {program.title}
                   </h3>
 
-                  <p className="mt-3 text-muted-foreground">
+                  <p className="mt-1.5 text-xs text-muted-foreground sm:mt-2 sm:text-sm md:mt-3 md:text-base">
                     {program.subtitle}
                   </p>
 
-                  <div className="mt-6 flex flex-wrap gap-2">
+                  <div className="mt-3 flex flex-wrap gap-1.5 sm:mt-5 sm:gap-2 md:mt-6">
 
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+                    <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary sm:px-3 sm:py-1 sm:text-sm">
                       Mathematics
                     </span>
 
-                    <span className="rounded-full bg-primary/10 px-3 py-1 text-sm font-semibold text-primary">
+                    <span className="rounded-full bg-primary/10 px-2 py-0.5 text-[10px] font-semibold text-primary sm:px-3 sm:py-1 sm:text-sm">
                       Physics
                     </span>
 

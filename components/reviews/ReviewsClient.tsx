@@ -25,25 +25,29 @@ export default function ReviewsClient({
 
   return (
     <>
-      <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="scroll-row -mx-4 gap-4 px-4 sm:mx-0 sm:grid sm:grid-cols-2 sm:gap-6 sm:overflow-visible sm:px-0 lg:grid-cols-4">
         {visibleReviews.map((review) => (
-          <ReviewCard
+          <div
             key={review.id}
-            name={review.name}
-            review={review.review}
-            rating={review.rating}
-            country={review.country}
-            date={review.created_at}
-          />
+            className="w-[78vw] max-w-[300px] shrink-0 sm:w-auto sm:max-w-none"
+          >
+            <ReviewCard
+              name={review.name}
+              review={review.review}
+              rating={review.rating}
+              country={review.country}
+              date={review.created_at}
+            />
+          </div>
         ))}
       </div>
 
       {reviews.length > 4 && (
-        <div className="mt-12 flex justify-center">
+        <div className="mt-10 flex justify-center sm:mt-12">
             <Button
             size="lg"
             onClick={() => setShowAll(!showAll)}
-            className="rounded-xl px-8"
+            className="shine-button rounded-xl px-8 shadow-lg shadow-primary/25"
             >
             {showAll ? (
                 <>

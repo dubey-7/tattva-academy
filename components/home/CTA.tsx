@@ -53,7 +53,7 @@ export default function CTA() {
                   /\D/g,
                   ""
                 )}?text=${encodeURIComponent(
-                  "Hi Tattva, I would like to know more about your classes."
+                  "Hi Tanvi, I would like to know more about your classes."
                 )}`}
                 target="_blank"
                 rel="noopener noreferrer"

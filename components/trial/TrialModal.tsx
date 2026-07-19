@@ -1,7 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import { toast } from "sonner";
+import { isValidPhoneNumber } from "libphonenumber-js";
 
 import {
   Dialog,
@@ -11,10 +12,69 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 
+import {
+  countryCodes,
+  defaultCountryCode,
+} from "@/data/countryCodes";
+
 interface TrialModalProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
 }
+
+const OTHER = "Other";
+
+const countries = [
+  "India",
+  "USA",
+  "Canada",
+  "Australia",
+  "United Kingdom",
+  "Singapore",
+  "UAE",
+  OTHER,
+];
+
+const grades = [
+  "Grade 1",
+  "Grade 2",
+  "Grade 3",
+  "Grade 4",
+  "Grade 5",
+  "Grade 6",
+  "Grade 7",
+  "Grade 8",
+  "Grade 9",
+  "Grade 10",
+  "Grade 11",
+  "Grade 12",
+  "Year 7",
+  "Year 8",
+  "Year 9",
+  "Year 10",
+  "Year 11",
+  "Year 12",
+  "Year 13",
+  OTHER,
+];
+
+const subjects = [
+  "Mathematics",
+  "Physics",
+  OTHER,
+];
+
+const curriculums = [
+  "IB DP",
+  "IB MYP",
+  "IGCSE",
+  "GCSE",
+  "A Level",
+  "SAT",
+  "CBSE",
+  "ICSE",
+  OTHER,
+];
 
 export default function TrialModal({
   open,
@@ -22,23 +82,67 @@ export default function TrialModal({
 }: TrialModalProps) {
   const [parentName, setParentName] = useState("");
   const [studentName, setStudentName] = useState("");
-  const [whatsapp, setWhatsapp] = useState("");
+
+  const [phoneCountry, setPhoneCountry] = useState(
+    defaultCountryCode.iso2
+  );
+  const [phoneNumber, setPhoneNumber] = useState("");
+
   const [email, setEmail] = useState("");
+
   const [country, setCountry] = useState("India");
+  const [countryOther, setCountryOther] = useState("");
+
   const [grade, setGrade] = useState("");
+  const [gradeOther, setGradeOther] = useState("");
+
   const [subject, setSubject] = useState("");
+  const [subjectOther, setSubjectOther] = useState("");
+
   const [curriculum, setCurriculum] = useState("");
+  const [curriculumOther, setCurriculumOther] = useState("");
+
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  const selectedDialCode = useMemo(
+    () =>
+      countryCodes.find((item) => item.iso2 === phoneCountry) ??
+      defaultCountryCode,
+    [phoneCountry]
+  );
+
+  const isPhoneValid = useMemo(() => {
+    if (!phoneNumber.trim()) return false;
+
+    try {
+      return isValidPhoneNumber(phoneNumber.trim(), phoneCountry);
+    } catch {
+      return false;
+    }
+  }, [phoneNumber, phoneCountry]);
+
+  const finalCountry =
+    country === OTHER ? countryOther.trim() : country;
+
+  const finalGrade =
+    grade === OTHER ? gradeOther.trim() : grade;
+
+  const finalSubject =
+    subject === OTHER ? subjectOther.trim() : subject;
+
+  const finalCurriculum =
+    curriculum === OTHER ? curriculumOther.trim() : curriculum;
 
   const isValid =
     parentName.trim().length >= 3 &&
     studentName.trim().length >= 2 &&
-    whatsapp.trim().length >= 10 &&
+    isPhoneValid &&
     email.trim().length > 5 &&
-    grade.trim() !== "" &&
-    subject !== "" &&
-    curriculum !== "";
+    finalCountry !== "" &&
+    finalGrade !== "" &&
+    finalSubject !== "" &&
+    finalCurriculum !== "";
 
     async function handleSubmit(
     e: React.FormEvent<HTMLFormElement>
@@ -48,6 +152,8 @@ export default function TrialModal({
     if (!isValid || loading) return;
 
     setLoading(true);
+
+    const whatsapp = `${selectedDialCode.dialCode} ${phoneNumber.trim()}`;
 
     try {
         const response = await fetch("/api/trial", {
@@ -60,10 +166,10 @@ export default function TrialModal({
             student_name: studentName,
             whatsapp,
             email,
-            country,
-            grade,
-            subject,
-            curriculum,
+            country: finalCountry,
+            grade: finalGrade,
+            subject: finalSubject,
+            curriculum: finalCurriculum,
         }),
         });
 
@@ -82,12 +188,17 @@ export default function TrialModal({
         setTimeout(() => {
         setParentName("");
         setStudentName("");
-        setWhatsapp("");
+        setPhoneCountry(defaultCountryCode.iso2);
+        setPhoneNumber("");
         setEmail("");
         setCountry("India");
+        setCountryOther("");
         setGrade("");
+        setGradeOther("");
         setSubject("");
+        setSubjectOther("");
         setCurriculum("");
+        setCurriculumOther("");
 
         setSuccess(false);
         setLoading(false);
@@ -102,28 +213,6 @@ export default function TrialModal({
         setLoading(false);
     }
     }
-
-    const countries = [
-        "India",
-        "USA",
-        "Canada",
-        "Australia",
-        "United Kingdom",
-        "Singapore",
-        "UAE",
-        "Other",
-      ];
-    
-    const curriculums = [
-      "IB DP",
-      "IB MYP",
-      "IGCSE",
-      "GCSE",
-      "A Level",
-      "SAT",
-      "CBSE",
-      "ICSE",
-    ];
 
   return (
     <Dialog
@@ -188,7 +277,7 @@ export default function TrialModal({
                   setParentName(e.target.value)
                 }
                 placeholder="Enter parent's name"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               />
 
               {parentName.length > 0 && parentName.length < 3 && (
@@ -214,7 +303,7 @@ export default function TrialModal({
                   setStudentName(e.target.value)
                 }
                 placeholder="Enter student name"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               />
 
               {studentName.length > 0 && studentName.length < 2 && (
@@ -225,7 +314,7 @@ export default function TrialModal({
 
             </div>
 
-            {/* WhatsApp */}
+            {/* WhatsApp — country code + number, validated per country */}
 
             <div>
               <label className="mb-2 block font-medium">
@@ -233,19 +322,43 @@ export default function TrialModal({
                 <span className="text-red-500"> *</span>
               </label>
 
-              <input
-                type="tel"
-                value={whatsapp}
-                onChange={(e) =>
-                  setWhatsapp(e.target.value)
-                }
-                placeholder="+91 XXXXX XXXXX"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
-              />
+              <div className="flex gap-2">
 
-              {whatsapp.length > 0 && whatsapp.length < 10 && (
+                <select
+                  value={phoneCountry}
+                  onChange={(e) =>
+                    setPhoneCountry(e.target.value as typeof phoneCountry)
+                  }
+                  aria-label="WhatsApp country code"
+                  className="w-[6.5rem] shrink-0 rounded-xl border bg-background px-2 py-3 text-sm outline-none focus:border-primary sm:w-36"
+                >
+                  {countryCodes.map((item) => (
+                    <option
+                      key={item.iso2}
+                      value={item.iso2}
+                    >
+                      {item.flag} {item.dialCode}
+                    </option>
+                  ))}
+                </select>
+
+                <input
+                  type="tel"
+                  value={phoneNumber}
+                  onChange={(e) =>
+                    setPhoneNumber(
+                      e.target.value.replace(/[^\d\s]/g, "")
+                    )
+                  }
+                  placeholder="98765 43210"
+                  className="w-full min-w-0 rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
+                />
+
+              </div>
+
+              {phoneNumber.length > 0 && !isPhoneValid && (
                 <p className="mt-2 text-xs text-red-500">
-                  Enter a valid WhatsApp number
+                  Enter a valid WhatsApp number for {selectedDialCode.name}
                 </p>
               )}
 
@@ -266,7 +379,7 @@ export default function TrialModal({
                   setEmail(e.target.value)
                 }
                 placeholder="example@gmail.com"
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               />
 
               {email.length > 0 &&
@@ -289,7 +402,7 @@ export default function TrialModal({
               <select
                 value={country}
                 onChange={(e) => setCountry(e.target.value)}
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               >
                 {countries.map((item) => (
                   <option
@@ -300,36 +413,52 @@ export default function TrialModal({
                   </option>
                 ))}
               </select>
+
+              {country === OTHER && (
+                <input
+                  type="text"
+                  value={countryOther}
+                  onChange={(e) => setCountryOther(e.target.value)}
+                  placeholder="Please specify your country"
+                  className="mt-3 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
+                />
+              )}
             </div>
 
-            {/* Grade */}
+            {/* Grade / Year */}
 
             <div>
               <label className="mb-2 block font-medium">
-                Grade
+                Grade / Year
                 <span className="text-red-500"> *</span>
               </label>
 
               <select
                 value={grade}
                 onChange={(e) => setGrade(e.target.value)}
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               >
-                <option value="">Select Grade</option>
+                <option value="">Select Grade / Year</option>
 
-                <option>Grade 1</option>
-                <option>Grade 2</option>
-                <option>Grade 3</option>
-                <option>Grade 4</option>
-                <option>Grade 5</option>
-                <option>Grade 6</option>
-                <option>Grade 7</option>
-                <option>Grade 8</option>
-                <option>Grade 9</option>
-                <option>Grade 10</option>
-                <option>Grade 11</option>
-                <option>Grade 12</option>
+                {grades.map((item) => (
+                  <option
+                    key={item}
+                    value={item}
+                  >
+                    {item}
+                  </option>
+                ))}
               </select>
+
+              {grade === OTHER && (
+                <input
+                  type="text"
+                  value={gradeOther}
+                  onChange={(e) => setGradeOther(e.target.value)}
+                  placeholder="Please specify grade / year"
+                  className="mt-3 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
+                />
+              )}
             </div>
 
             {/* Subject */}
@@ -345,12 +474,29 @@ export default function TrialModal({
                 onChange={(e) =>
                   setSubject(e.target.value)
                 }
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               >
                 <option value="">Select Subject</option>
-                <option>Mathematics</option>
-                <option>Physics</option>
+
+                {subjects.map((item) => (
+                  <option
+                    key={item}
+                    value={item}
+                  >
+                    {item}
+                  </option>
+                ))}
               </select>
+
+              {subject === OTHER && (
+                <input
+                  type="text"
+                  value={subjectOther}
+                  onChange={(e) => setSubjectOther(e.target.value)}
+                  placeholder="Please specify subject"
+                  className="mt-3 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
+                />
+              )}
             </div>
 
             {/* Curriculum */}
@@ -366,7 +512,7 @@ export default function TrialModal({
                 onChange={(e) =>
                   setCurriculum(e.target.value)
                 }
-                className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
               >
                   <option value="">
                       Select Curriculum
@@ -382,8 +528,18 @@ export default function TrialModal({
                   ))}
 
               </select>
+
+              {curriculum === OTHER && (
+                <input
+                  type="text"
+                  value={curriculumOther}
+                  onChange={(e) => setCurriculumOther(e.target.value)}
+                  placeholder="Please specify curriculum"
+                  className="mt-3 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
+                />
+              )}
             </div>
-                
+
               <button
                   type="submit"
                   disabled={!isValid || loading}

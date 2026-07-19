@@ -42,33 +42,44 @@ export default function Navbar() {
   /* ---------------- Active Section ---------------- */
 
   useEffect(() => {
-    const sections = navigation.map((item) =>
+    const sectionIds = navigation.map((item) =>
       item.href.replace("#", "")
     );
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
-          }
-        });
-      },
-      {
-        threshold: 0.45,
-      }
-    );
+    function updateActiveSection() {
+      const scrollPos = window.scrollY + 140;
 
-    sections.forEach((id) => {
-      const section =
-        document.getElementById(id);
+      let current = sectionIds[0];
+      let bestOffset = -Infinity;
 
-      if (section) {
-        observer.observe(section);
+      for (const id of sectionIds) {
+        const section = document.getElementById(id);
+
+        if (
+          section &&
+          section.offsetTop <= scrollPos &&
+          section.offsetTop > bestOffset
+        ) {
+          current = id;
+          bestOffset = section.offsetTop;
+        }
       }
+
+      setActiveSection(current);
+    }
+
+    updateActiveSection();
+
+    window.addEventListener("scroll", updateActiveSection, {
+      passive: true,
     });
 
-    return () => observer.disconnect();
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
   }, []);
 
   /* ---------------- Authentication ---------------- */
@@ -95,13 +106,13 @@ export default function Navbar() {
 
   return (
     <>
-      <header className="sticky top-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
-        <Container className="flex h-20 items-center justify-between">
+      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/85 backdrop-blur-xl">
+        <Container className="flex h-[4.5rem] items-center justify-between py-3 sm:h-20">
           <Logo />
 
           {/* Desktop Navigation */}
 
-          <nav className="hidden items-center gap-8 lg:flex">
+          <nav className="hidden items-center gap-1 rounded-full border border-border/60 bg-muted/40 px-2 py-1.5 lg:flex">
             {navigation.map((item) => {
               const id = item.href.replace(
                 "#",
@@ -126,17 +137,13 @@ export default function Navbar() {
                         block: "start",
                       });
                   }}
-                  className={`relative text-sm font-medium transition-colors ${
+                  className={`relative rounded-full px-4 py-2 text-sm font-medium transition-all duration-300 ${
                     active
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-primary"
+                      ? "bg-primary text-primary-foreground shadow-md shadow-primary/30"
+                      : "text-muted-foreground hover:bg-background hover:text-foreground"
                   }`}
                 >
                   {item.title}
-
-                  {active && (
-                    <span className="absolute -bottom-2 left-0 h-0.5 w-full rounded-full bg-primary" />
-                  )}
                 </Link>
               );
             })}
@@ -144,9 +151,7 @@ export default function Navbar() {
 
           {/* Right Side */}
 
-          {/* Right Side */}
-
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2 sm:gap-3">
             <ThemeToggle />
 
             {/* Book Free Trial */}
