@@ -23,7 +23,7 @@ export default function Logo() {
           {siteConfig.name}
         </h2>
 
-        <p className="text-xs text-muted-foreground">
+        <p className="whitespace-nowrap font-handwritten text-base font-semibold leading-none text-primary sm:text-lg">
           {siteConfig.tagline}
         </p>
       </div>

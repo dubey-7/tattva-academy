@@ -78,27 +78,25 @@ export default function Stats() {
           className="overflow-hidden rounded-[34px] border bg-card shadow-lg"
         >
 
-          <div className="grid items-center gap-10 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[240px_1fr_330px] lg:px-12 lg:py-12">
+          <div className="grid items-center gap-6 px-5 py-6 sm:gap-10 sm:px-8 sm:py-10 lg:grid-cols-[240px_1fr_330px] lg:px-12 lg:py-12">
 
             {/* LEFT */}
 
-            <div>
+            <div className="text-center lg:text-left">
 
-              <p className="text-3xl font-bold leading-snug text-foreground">
+              <p className="text-lg font-bold leading-snug text-foreground sm:text-3xl">
 
-                Trusted by
-                <br />
-                students from
+                Trusted by students from
 
               </p>
 
-              <h3 className="mt-4 text-5xl font-extrabold text-primary">
+              <h3 className="mt-2 text-3xl font-extrabold text-primary sm:mt-4 sm:text-5xl">
 
                 15+
 
               </h3>
 
-              <p className="text-xl font-semibold text-foreground">
+              <p className="text-base font-semibold text-foreground sm:text-xl">
 
                 Countries
 
@@ -126,13 +124,13 @@ export default function Stats() {
 
             <div>
 
-              <div className="grid grid-cols-5 gap-3">
+              <div className="grid grid-cols-5 gap-2 sm:gap-3">
 
                 {countries.map((country) => (
 
                   <div
                     key={country.name}
-                    className="flex h-14 w-14 items-center justify-center rounded-xl border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md"
+                    className="flex h-9 w-9 items-center justify-center rounded-lg border bg-card shadow-sm transition hover:-translate-y-1 hover:shadow-md sm:h-14 sm:w-14 sm:rounded-xl"
                   >
 
                     <Image
@@ -140,14 +138,14 @@ export default function Stats() {
                       alt={country.name}
                       width={36}
                       height={36}
-                      className="rounded-full object-cover"
+                      className="h-5 w-5 rounded-full object-cover sm:h-9 sm:w-9"
                     />
 
                   </div>
 
                 ))}
 
-                <div className="flex h-14 w-14 items-center justify-center rounded-xl border bg-card text-lg font-bold text-primary shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center rounded-lg border bg-card text-xs font-bold text-primary shadow-sm sm:h-14 sm:w-14 sm:rounded-xl sm:text-lg">
 
                   +5
 
@@ -155,7 +153,7 @@ export default function Stats() {
 
               </div>
 
-              <p className="mt-6 text-center text-base font-medium text-muted-foreground">
+              <p className="mt-4 text-center text-sm font-medium text-muted-foreground sm:mt-6 sm:text-base">
 
                 ...and many more
 
@@ -182,9 +180,9 @@ export default function Stats() {
             delay: 0.15,
           }}
           viewport={{ once: true }}
-          className="mt-10 overflow-hidden rounded-[30px] border bg-card shadow-lg"
+          className="mt-6 overflow-hidden rounded-[22px] border bg-card shadow-lg sm:mt-10 sm:rounded-[30px]"
         >
-          <div className="grid divide-y md:grid-cols-5 md:divide-x md:divide-y-0">
+          <div className="grid grid-cols-5 divide-x">
 
             {stats.map((item) => {
 
@@ -194,25 +192,25 @@ export default function Stats() {
 
                 <div
                   key={item.label}
-                  className="flex flex-col items-center justify-center px-6 py-8 transition-all hover:bg-muted sm:px-8 sm:py-10"
+                  className="flex flex-col items-center justify-center px-1.5 py-4 text-center transition-all hover:bg-muted sm:px-6 sm:py-8 md:px-8 md:py-10"
                 >
 
-                  <div className="mb-5">
+                  <div className="mb-1.5 sm:mb-5">
 
                     <Icon
                       strokeWidth={1.8}
-                      className="h-12 w-12 text-primary"
+                      className="h-5 w-5 text-primary sm:h-10 sm:w-10 md:h-12 md:w-12"
                     />
 
                   </div>
 
-                  <h3 className="text-4xl font-extrabold text-foreground sm:text-5xl">
+                  <h3 className="text-sm font-extrabold text-foreground sm:text-3xl md:text-5xl">
 
                     {item.value}
 
                   </h3>
 
-                  <p className="mt-3 text-center text-base font-medium text-muted-foreground">
+                  <p className="mt-1 text-center text-[9px] leading-tight font-medium text-muted-foreground sm:mt-3 sm:text-sm md:text-base">
 
                     {item.label}
 

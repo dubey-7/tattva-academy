@@ -59,49 +59,49 @@ export default function ReviewCard({
       });
 
   return (
-    <div className="group flex h-full flex-col rounded-3xl border bg-card p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
+    <div className="card-glow group flex h-full flex-col rounded-2xl border bg-card p-4 transition-all duration-300 hover:-translate-y-2 sm:rounded-3xl sm:p-8">
 
-      <div className="mb-5 flex items-center justify-between">
+      <div className="mb-3 flex items-center justify-between sm:mb-5">
 
-        <div className="flex gap-1">
+        <div className="flex gap-0.5 sm:gap-1">
           {[1, 2, 3, 4, 5].map((star) => (
             <Star
               key={star}
-              className={`h-5 w-5 ${
+              className={`h-3.5 w-3.5 sm:h-5 sm:w-5 ${
                 star <= rating
                   ? "fill-yellow-400 text-yellow-400"
-                  : "fill-transparent text-gray-300"
+                  : "fill-transparent text-muted-foreground/30"
               }`}
             />
           ))}
         </div>
 
-        <Quote className="h-7 w-7 text-primary/20 transition group-hover:scale-110" />
+        <Quote className="h-5 w-5 text-primary/20 transition group-hover:scale-110 sm:h-7 sm:w-7" />
 
       </div>
 
-      <p className="flex-1 leading-8 text-muted-foreground">
-        "{review}"
+      <p className="flex-1 text-sm leading-6 text-muted-foreground sm:text-base sm:leading-8">
+        &ldquo;{review}&rdquo;
       </p>
 
-      <div className="mt-8 flex items-center gap-4 border-t pt-6">
+      <div className="mt-5 flex items-center gap-3 border-t pt-4 sm:mt-8 sm:gap-4 sm:pt-6">
 
-        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-lg font-bold text-primary">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary sm:h-12 sm:w-12 sm:text-lg">
           {name.charAt(0).toUpperCase()}
         </div>
 
-        <div>
-          <h3 className="font-semibold">
+        <div className="min-w-0">
+          <h3 className="truncate text-sm font-semibold sm:text-base">
             {name}
           </h3>
 
           {country && (
-            <p className="text-sm text-primary font-medium">
+            <p className="truncate text-xs font-medium text-primary sm:text-sm">
               🌍 {country}
             </p>
           )}
 
-          <p className="text-sm text-muted-foreground">
+          <p className="truncate text-xs text-muted-foreground sm:text-sm">
             {formattedDate} • {getTimeAgo(date)}
           </p>
         </div>

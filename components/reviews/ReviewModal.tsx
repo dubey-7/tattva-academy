@@ -24,6 +24,7 @@ export default function ReviewModal({
 }: ReviewModalProps) {
   const [name, setName] = useState("");
   const [country, setCountry] = useState("India");
+  const [countryOther, setCountryOther] = useState("");
   const [rating, setRating] = useState(0);
   const [review, setReview] = useState("");
 
@@ -49,6 +50,14 @@ export default function ReviewModal({
       return;
     }
 
+    const finalCountry =
+      country === "Other" ? countryOther.trim() : country;
+
+    if (!finalCountry) {
+      toast.error("Please specify your country.");
+      return;
+    }
+
     if (review.trim().length < 15) {
       toast.error(
         "Please write at least 15 characters."
@@ -68,7 +77,7 @@ export default function ReviewModal({
 
         body: JSON.stringify({
           name: name.trim(),
-          country,
+          country: finalCountry,
           rating,
           review: review.trim(),
         }),
@@ -97,6 +106,7 @@ export default function ReviewModal({
 
         setName("");
         setCountry("India");
+        setCountryOther("");
         setRating(5);
         setReview("");
 
@@ -170,7 +180,7 @@ export default function ReviewModal({
                   value={name}
                   placeholder="Enter your name"
                   onChange={(e) => setName(e.target.value)}
-                  className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                  className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
                 />
 
                 {name.length > 0 && name.length < 3 && (
@@ -192,7 +202,7 @@ export default function ReviewModal({
                   onChange={(e) =>
                     setCountry(e.target.value)
                   }
-                  className="w-full rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                  className="w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
                 >
                   <option>India</option>
                   <option>USA</option>
@@ -203,6 +213,16 @@ export default function ReviewModal({
                   <option>UAE</option>
                   <option>Other</option>
                 </select>
+
+                {country === "Other" && (
+                  <input
+                    type="text"
+                    value={countryOther}
+                    onChange={(e) => setCountryOther(e.target.value)}
+                    placeholder="Please specify your country"
+                    className="mt-3 w-full rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
+                  />
+                )}
 
               </div>
 
@@ -233,7 +253,7 @@ export default function ReviewModal({
                   onChange={(e) =>
                     setReview(e.target.value)
                   }
-                  className="w-full resize-none rounded-xl border px-4 py-3 outline-none focus:border-primary"
+                  className="w-full resize-none rounded-xl border bg-background px-4 py-3 outline-none focus:border-primary"
                 />
 
                 <div className="mt-2 flex items-center justify-between text-xs">

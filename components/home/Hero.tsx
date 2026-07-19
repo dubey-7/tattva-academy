@@ -5,7 +5,6 @@ import { MessageCircle } from "lucide-react";
 
 import TrialButton from "@/components/trial/TrialButton";
 import Container from "@/components/common/Container";
-import FloatingSuccessCard from "@/components/cards/FloatingSuccessCard";
 import { siteConfig } from "@/config/site";
 
 import { fadeLeft, fadeRight } from "@/lib/animations";
@@ -88,94 +87,16 @@ export default function Hero() {
           >
             <div className="absolute -z-10 h-[260px] w-[260px] rounded-full bg-primary/15 blur-3xl lg:h-[420px] lg:w-[420px]" />
 
-            <div className="hidden lg:block">
-              <FloatingSuccessCard />
-            </div>
+            {/* Video — original aspect ratio preserved, no crop/zoom */}
 
-            {/* Students */}
-
-            <motion.div
-              animate={{
-                y: [0, 8, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-              }}
-              className="absolute -right-6 top-10 z-20 hidden rounded-2xl border bg-card px-5 py-4 shadow-xl lg:block"
-            >
-              <p className="text-3xl font-bold text-primary">
-                150+
-              </p>
-
-              <p className="text-sm text-muted-foreground">
-                Students
-              </p>
-            </motion.div>
-
-            {/* Classes */}
-
-            <motion.div
-              animate={{
-                y: [0, -8, 0],
-              }}
-              transition={{
-                duration: 4.5,
-                repeat: Infinity,
-              }}
-              className="absolute -left-8 bottom-8 z-20 hidden rounded-2xl border bg-card px-5 py-4 shadow-xl lg:block"
-            >
-              <p className="text-3xl font-bold text-primary">
-                5000+
-              </p>
-
-              <p className="text-sm text-muted-foreground">
-                Classes
-              </p>
-            </motion.div>
-
-            {/* Curriculum Cards */}
-
-            {[
-              ["IB", "DP & MYP", "left-16 -top-6"],
-              ["IGCSE", "Math & Physics", "right-12 -top-8"],
-              ["GCSE", "Cambridge", "-right-10 top-44"],
-              ["A Level", "Advanced", "-left-12 top-56"],
-              ["SAT", "Test Prep", "left-24 -bottom-8"],
-              ["CBSE", "Grade 9-12", "right-20 -bottom-10"],
-              ["ICSE", "Concept Based", "right-2 bottom-28"],
-            ].map(([title, subtitle, pos]) => (
-              <motion.div
-                key={title}
-                animate={{
-                  y: [0, -6, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                }}
-                className={`absolute ${pos} z-20 hidden rounded-xl border bg-card px-4 py-3 shadow-lg xl:block`}
-              >
-                <p className="font-bold text-primary">
-                  {title}
-                </p>
-
-                <p className="text-xs text-muted-foreground">
-                  {subtitle}
-                </p>
-              </motion.div>
-            ))}
-
-            {/* Video */}
-
-            <div className="relative z-10 mx-auto mt-8 flex aspect-video w-full max-w-[520px] items-center justify-center rounded-2xl bg-background shadow-2xl sm:max-w-[600px] md:mt-10 md:max-w-[660px] lg:mt-0 lg:aspect-[2.2/1] lg:max-w-[750px] lg:rounded-[2rem]">
+            <div className="card-glow relative z-10 mx-auto w-full max-w-[560px] overflow-hidden rounded-[1.75rem] border border-border/60 bg-card p-2 shadow-2xl sm:max-w-[620px] md:max-w-[680px] lg:max-w-[720px] lg:rounded-[2rem] lg:p-3">
               <video
                 autoPlay
                 muted
                 loop
                 playsInline
                 preload="metadata"
-                className="h-full w-full rounded-xl object-cover lg:rounded-[1.5rem]"
+                className="h-auto w-full rounded-2xl object-contain"
               >
                 <source
                   src="/videos/tanvi.mp4"

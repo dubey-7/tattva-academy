@@ -4,12 +4,16 @@ export const navigation = [
     href: "#home",
   },
   {
+    title: "Courses",
+    href: "#subjects",
+  },
+  {
     title: "About",
     href: "#about",
   },
   {
-    title: "Courses",
-    href: "#subjects",
+    title: "Demo Classes",
+    href: "#demo-classes",
   },
   {
     title: "How It Works",
@@ -18,10 +22,6 @@ export const navigation = [
   {
     title: "Reviews",
     href: "#reviews",
-  },
-  {
-    title: "Demo Classes",
-    href: "#demo-classes",
   },
   {
     title: "Contact",

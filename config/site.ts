@@ -6,7 +6,7 @@ export const siteConfig = {
   description:
     "Personalized one-on-one online tutoring that helps every learner unlock their true potential.",
 
-  tagline: "The Essence of Personalized Learning.",
+  tagline: "Master What Matters!",
 
   url: "https://tattva.in",
 
