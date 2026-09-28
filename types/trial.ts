@@ -1,5 +1,5 @@
 export interface TrialRegistration {
-  id: number;
+  id: string;
 
   parent_name: string;
   student_name: string;

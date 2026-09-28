@@ -9,7 +9,9 @@ import {
   Menu,
   LogOut,
   UserCircle,
+  LayoutDashboard,
 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { User } from "@supabase/supabase-js";
 
@@ -24,9 +26,17 @@ import { navigation } from "@/config/navigation";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/client";
 import TrialModal from "../trial/TrialModal";
+import { useAcademyUser } from "@/hooks/useAcademyUser";
 
 export default function Navbar() {
   const supabase = createClient();
+
+  const pathname = usePathname();
+  const router = useRouter();
+  const { isTeacher } = useAcademyUser();
+
+  const dashboardHref = isTeacher ? "/teacher" : "/dashboard";
+  const dashboardLabel = isTeacher ? "Teacher Panel" : "My Dashboard";
 
   const [activeSection, setActiveSection] =
     useState("home");
@@ -120,7 +130,7 @@ export default function Navbar() {
               );
 
               const active =
-                activeSection === id;
+                pathname === "/" && activeSection === id;
 
               return (
                 <Link
@@ -129,6 +139,11 @@ export default function Navbar() {
                   scroll={false}
                   onClick={(e) => {
                     e.preventDefault();
+
+                    if (pathname !== "/") {
+                      router.push(`/${item.href}`);
+                      return;
+                    }
 
                     document
                       .getElementById(id)
@@ -165,14 +180,27 @@ export default function Navbar() {
             </Button>
 
             {user ? (
-              <Button
-                variant="outline"
-                onClick={logout}
-                className="hidden lg:flex"
-              >
-                <LogOut className="mr-2 h-4 w-4" />
-                Logout
-              </Button>
+              <>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="hidden lg:flex"
+                >
+                  <Link href={dashboardHref}>
+                    <LayoutDashboard className="mr-2 h-4 w-4" />
+                    {dashboardLabel}
+                  </Link>
+                </Button>
+
+                <Button
+                  variant="ghost"
+                  onClick={logout}
+                  className="hidden lg:flex"
+                >
+                  <LogOut className="mr-2 h-4 w-4" />
+                  Logout
+                </Button>
+              </>
             ) : (
               <Button
                 onClick={() => setAuthOpen(true)}
@@ -186,7 +214,13 @@ export default function Navbar() {
             {/* Mobile */}
 
             <div className="lg:hidden">
-              <MobileMenu>
+              <MobileMenu
+                loggedIn={!!user}
+                dashboardHref={dashboardHref}
+                dashboardLabel={dashboardLabel}
+                onLogin={() => setAuthOpen(true)}
+                onLogout={logout}
+              >
                 <Button
                   size="icon"
                   variant="ghost"
