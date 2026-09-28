@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -11,11 +12,15 @@ import { Button } from "@/components/ui/button";
 interface SubjectCardProps {
   title: string;
   description: string;
+  badge?: string;
+  footer?: ReactNode;
 }
 
 export default function SubjectCard({
   title,
   description,
+  badge,
+  footer,
 }: SubjectCardProps) {
   return (
     <motion.div
@@ -36,6 +41,12 @@ export default function SubjectCard({
       <div className="relative z-10 mb-8 flex h-20 w-20 items-center justify-center rounded-3xl bg-primary/10 transition-all duration-300 group-hover:scale-110 group-hover:bg-primary group-hover:text-primary-foreground">
         <BookOpen className="h-10 w-10" />
       </div>
+
+      {badge && (
+        <span className="relative z-10 mb-3 inline-flex rounded-full bg-primary/10 px-3 py-1 text-xs font-semibold text-primary">
+          {badge}
+        </span>
+      )}
 
       {/* Title */}
 
@@ -70,6 +81,8 @@ export default function SubjectCard({
 
         <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
       </Button>
+
+      {footer && <div className="relative z-10 mt-4">{footer}</div>}
 
     </motion.div>
   );

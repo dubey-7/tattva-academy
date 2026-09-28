@@ -1,7 +1,15 @@
 "use client";
 
 import { ReactNode, useState } from "react";
-import { X, MessageCircle } from "lucide-react";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import {
+  X,
+  MessageCircle,
+  LayoutDashboard,
+  LogIn,
+  LogOut,
+} from "lucide-react";
 
 import { navigation } from "@/config/navigation";
 import { siteConfig } from "@/config/site";
@@ -11,15 +19,32 @@ import TrialButton from "@/components/trial/TrialButton";
 
 interface MobileMenuProps {
   children: ReactNode;
+  loggedIn?: boolean;
+  dashboardHref?: string;
+  dashboardLabel?: string;
+  onLogin?: () => void;
+  onLogout?: () => void;
 }
 
 export default function MobileMenu({
   children,
+  loggedIn = false,
+  dashboardHref = "/dashboard",
+  dashboardLabel = "My Dashboard",
+  onLogin,
+  onLogout,
 }: MobileMenuProps) {
   const [open, setOpen] = useState(false);
+  const pathname = usePathname();
+  const router = useRouter();
 
   function handleClick(id: string) {
     setOpen(false);
+
+    if (pathname !== "/") {
+      router.push(`/${id}`);
+      return;
+    }
 
     setTimeout(() => {
       document
@@ -91,6 +116,47 @@ export default function MobileMenu({
                 ))}
 
               </div>
+
+              {/* Account */}
+
+              {(onLogin || onLogout) && (
+                <div className="mt-6 space-y-3 border-t pt-6">
+                  {loggedIn ? (
+                    <>
+                      <Link
+                        href={dashboardHref}
+                        onClick={() => setOpen(false)}
+                        className="flex w-full items-center justify-center rounded-2xl border bg-primary px-5 py-4 font-semibold text-primary-foreground transition-all duration-300 hover:opacity-90"
+                      >
+                        <LayoutDashboard className="mr-2 h-5 w-5" />
+                        {dashboardLabel}
+                      </Link>
+
+                      <button
+                        onClick={() => {
+                          setOpen(false);
+                          onLogout?.();
+                        }}
+                        className="flex w-full items-center justify-center rounded-2xl border px-5 py-4 font-semibold transition-all duration-300 hover:bg-muted"
+                      >
+                        <LogOut className="mr-2 h-5 w-5" />
+                        Logout
+                      </button>
+                    </>
+                  ) : (
+                    <button
+                      onClick={() => {
+                        setOpen(false);
+                        onLogin?.();
+                      }}
+                      className="flex w-full items-center justify-center rounded-2xl border bg-primary px-5 py-4 font-semibold text-primary-foreground transition-all duration-300 hover:opacity-90"
+                    >
+                      <LogIn className="mr-2 h-5 w-5" />
+                      Login / Register
+                    </button>
+                  )}
+                </div>
+              )}
 
               {/* CTA */}
 

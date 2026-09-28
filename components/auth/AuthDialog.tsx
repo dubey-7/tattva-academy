@@ -79,6 +79,9 @@ export default function AuthDialog({
         options: {
           data: {
             full_name: register.full_name,
+            phone: register.phone,
+            grade: register.grade,
+            country: register.country,
           },
         },
       });
