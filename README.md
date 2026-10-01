@@ -19,3 +19,6 @@ To use the components in your app, import them as follows:
 ```tsx
 import { Button } from "@/components/ui/button";
 ```
+## Remeber the Twilio Recovery code for sms authentfication:
+
+4QF2ZJRWGHDNW49X5E3XN3UM
