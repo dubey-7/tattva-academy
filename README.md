@@ -1,24 +1,78 @@
-# Next.js template
+# Tattva Academy 🎓
 
-This is a Next.js template with shadcn/ui.
+**Personalised Online Mentorship in Mathematics & Physics**
 
-## Adding components
+Tattva Academy is an online learning platform focused on helping students strengthen their understanding of Mathematics and Physics through personalised mentorship. It also includes an academy management portal for handling courses, students, lectures, enrollments, and trial-class registrations.
 
-To add components to your app, run the following command:
+🌐 **Live Website:** https://tattva-academy.vercel.app/
 
-```bash
-npx shadcn@latest add button
-```
+## ✨ Features
 
-This will place the ui components in the `components` directory.
+- **Course Management** — Organise and manage academic courses.
+- **Student Management** — Maintain student profiles and enrollment records.
+- **Lecture Management** — Manage lectures and track lecture visits.
+- **Trial Class Registration** — Allow students to register for trial sessions.
+- **Reviews & Feedback** — Showcase student feedback.
+- **Authentication** — Secure authentication and session management using Supabase.
+- **Admin Dashboard** — Manage academy operations through dedicated admin pages.
+- **Responsive UI** — User-friendly interface across devices.
 
-## Using components
+## 🛠️ Tech Stack
 
-To use the components in your app, import them as follows:
+- **Frontend:** Next.js, React, TypeScript
+- **Styling:** Tailwind CSS, shadcn/ui
+- **Backend & Database:** Supabase
+- **Authentication:** Supabase Auth
+- **Animations:** Framer Motion
+- **Icons:** Lucide React
+- **Deployment:** Vercel
 
-```tsx
-import { Button } from "@/components/ui/button";
-```
-## Remeber the Twilio Recovery code for sms authentfication:
+## 🚀 Getting Started
 
-4QF2ZJRWGHDNW49X5E3XN3UM
+### Prerequisites
+
+- Node.js and npm
+- A configured Supabase project
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/dubey-7/tattva-academy.git
+   cd tattva-academy
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+3. Create a `.env.local` file in the root directory and add your Supabase credentials:
+
+   ```env
+   NEXT_PUBLIC_SUPABASE_URL=your_supabase_project_url
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+4. Start the development server:
+
+   ```bash
+   npm run dev
+   ```
+
+5. Open http://localhost:3000 in your browser.
+
+## 📌 Project Overview
+
+Tattva Academy combines an educational website with an academy management portal, bringing learning resources and administrative workflows together in one platform.
+
+## 🔗 Links
+
+- **Live Website:** https://tattva-academy.vercel.app/
+- **GitHub Repository:** https://github.com/dubey-7/tattva-academy
+
+---
+
+*Built to make personalised online learning more accessible.*
